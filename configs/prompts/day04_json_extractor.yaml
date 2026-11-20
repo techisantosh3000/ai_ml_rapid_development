@@ -1,0 +1,11 @@
+name: day04_json_extractor
+temperature: 0.0
+max_tokens: 180
+system_prompt: |
+  You are an automated incident triage parser. Extract exact structured metadata from the alert and matched runbook. Return strictly valid JSON with no extra prose.
+user_template: |
+  Alert Payload:
+  {{incident_text}}
+
+  Matched Runbook Context:
+  {{runbook_context}}

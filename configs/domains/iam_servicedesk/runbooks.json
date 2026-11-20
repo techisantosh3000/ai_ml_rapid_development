@@ -1,0 +1,102 @@
+[
+  {
+    "id": 401,
+    "text": "RB IAM-101 [SSO / SAML]: SAML 2.0 assertion validation failed due to NTP clock skew > 180s. Synchronize chronyd NTP daemon on application nodes and verify IdP metadata timestamp.",
+    "metadata": {
+      "runbook_id": "IAM-101",
+      "category": "sso",
+      "service": "saml-gateway",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 402,
+    "text": "RB IAM-102 [OAuth2 / Token]: OAuth2 refresh token rotation loop invalidating active mobile sessions. Enable 30-second refresh token grace window in Okta authorization server.",
+    "metadata": {
+      "runbook_id": "IAM-102",
+      "category": "oauth",
+      "service": "okta-auth",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 403,
+    "text": "RB IAM-103 [LDAP / AD]: Active Directory account lockout storm caused by cached stale service credentials on legacy batch host. Identify source IP via Event ID 4740 and update Windows Credential Manager.",
+    "metadata": {
+      "runbook_id": "IAM-103",
+      "category": "directory",
+      "service": "active-directory",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 404,
+    "text": "RB IAM-104 [CloudIAM / RBAC]: GCP/AWS cross-account IAM AssumeRole AccessDenied due to missing externalId condition or expired STS session. Update trust policy and refresh short-lived credentials.",
+    "metadata": {
+      "runbook_id": "IAM-104",
+      "category": "cloud-iam",
+      "service": "sts-broker",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 405,
+    "text": "RB IAM-105 [VPN / ZeroTrust]: Corporate WireGuard / ZTNA split-tunnel DNS resolution failure for *.internal domains. Push updated CoreDNS upstream forwarder profile to VPN clients.",
+    "metadata": {
+      "runbook_id": "IAM-105",
+      "category": "network-access",
+      "service": "ztna-vpn",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 406,
+    "text": "RB IAM-106 [Security / SocialEng]: Helpdesk ticket contains credential leak or prompt injection requesting unauthorized admin elevation. Reject request immediately, revoke leaked token, and alert SOC.",
+    "metadata": {
+      "runbook_id": "IAM-106",
+      "category": "security",
+      "service": "iam-guard",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 407,
+    "text": "RB IAM-107 [SCIM / Provisioning]: Okta-to-GitHub SCIM user provisioning failing with HTTP 409 conflict on existing external handle. Link existing enterprise SAML identity and retry SCIM sync.",
+    "metadata": {
+      "runbook_id": "IAM-107",
+      "category": "provisioning",
+      "service": "scim-sync",
+      "severity": "P3"
+    }
+  },
+  {
+    "id": 408,
+    "text": "RB IAM-108 [MFA / WebAuthn]: FIDO2 / WebAuthn hardware key authentication rejected after custom domain migration. Update rpId origin allowlist in authentication policy.",
+    "metadata": {
+      "runbook_id": "IAM-108",
+      "category": "sso",
+      "service": "mfa-service",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 409,
+    "text": "RB IAM-109 [K8s / OIDC]: kubectl OIDC login failing with x509 certificate signed by unknown authority. Update kube-apiserver --oidc-ca-file bundle and refresh kubeconfig.",
+    "metadata": {
+      "runbook_id": "IAM-109",
+      "category": "cloud-iam",
+      "service": "k8s-oidc",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 410,
+    "text": "RB IAM-110 [PAM / JIT]: Privileged Access Management Just-In-Time elevation expired mid-maintenance window. Require manager approval ticket and issue bounded 2-hour break-glass role.",
+    "metadata": {
+      "runbook_id": "IAM-110",
+      "category": "provisioning",
+      "service": "pam-vault",
+      "severity": "P3"
+    }
+  }
+]

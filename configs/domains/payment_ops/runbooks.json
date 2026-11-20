@@ -1,0 +1,102 @@
+[
+  {
+    "id": 301,
+    "text": "RB PAY-101 [Idempotency / CorePay]: Duplicate payment idempotency key conflict on retry. Query spanner idempotency_ledger table, return original HTTP 200 settlement receipt, and suppress duplicate debit.",
+    "metadata": {
+      "runbook_id": "PAY-101",
+      "category": "core-pay",
+      "service": "payment-engine",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 302,
+    "text": "RB PAY-102 [Acquirer / ISO8583]: Downstream card acquirer ISO 8583 response code 91 (Issuer Inoperative) timeout. Trigger automated 0420 reversal message within 15s SLA and route traffic to secondary acquirer.",
+    "metadata": {
+      "runbook_id": "PAY-102",
+      "category": "acquirer",
+      "service": "iso8583-gateway",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 303,
+    "text": "RB PAY-103 [Spanner / Ledger]: Cloud Spanner lock contention hotspot on monotonic timestamp primary key in ledger_entries. Switch primary key to shard-prefixed UUIDv4 and verify commit latency < 15ms.",
+    "metadata": {
+      "runbook_id": "PAY-103",
+      "category": "database",
+      "service": "spanner-ledger",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 304,
+    "text": "RB PAY-104 [Kafka / Settlement]: Kafka Streams settlement consumer lag exceeding 500k events after partition rebalance. Verify RocksDB state store restoration, pause non-critical batch consumers, and drain topic.",
+    "metadata": {
+      "runbook_id": "PAY-104",
+      "category": "streaming",
+      "service": "settlement-streams",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 305,
+    "text": "RB PAY-105 [DLQ / PoisonPill]: Malformed JSON payload stuck in payment-events-dlq topic. Inspect schema version header, patch deserialization handler, and run controlled DLQ replay script.",
+    "metadata": {
+      "runbook_id": "PAY-105",
+      "category": "streaming",
+      "service": "dlq-replayer",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 306,
+    "text": "RB PAY-106 [Compliance / PCI-Guard]: Unmasked PAN or API token detected in payment webhook audit log. Purge raw log entry immediately, rotate merchant HMAC key, and enforce tokenization filter.",
+    "metadata": {
+      "runbook_id": "PAY-106",
+      "category": "security",
+      "service": "pci-firewall",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 307,
+    "text": "RB PAY-107 [UPI / PSP]: UPI collect request callback latency spike > 5s from partner PSP. Enable circuit breaker fallback, queue pending status check cron, and notify PSP NOC.",
+    "metadata": {
+      "runbook_id": "PAY-107",
+      "category": "acquirer",
+      "service": "upi-router",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 308,
+    "text": "RB PAY-108 [Reconciliation / EOD]: End-of-day Nostro ledger reconciliation mismatch of 14 unsettled batch records. Cross-check clearing file hashes against Spanner settled_txns and post adjustment journal.",
+    "metadata": {
+      "runbook_id": "PAY-108",
+      "category": "reconciliation",
+      "service": "eod-reconciler",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 309,
+    "text": "RB PAY-109 [Fraud / Velocity]: Redis fraud velocity counter fallback triggered during spike. Fail-open for verified low-risk merchants under $50 while routing high-value transactions to 3DS challenge.",
+    "metadata": {
+      "runbook_id": "PAY-109",
+      "category": "fraud",
+      "service": "velocity-engine",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 310,
+    "text": "RB PAY-110 [Webhook / Merchant]: Merchant settlement webhook delivery failing with HTTP 429 rate limit. Apply exponential backoff with jitter and batch webhook notifications.",
+    "metadata": {
+      "runbook_id": "PAY-110",
+      "category": "webhook",
+      "service": "merchant-notifier",
+      "severity": "P3"
+    }
+  }
+]

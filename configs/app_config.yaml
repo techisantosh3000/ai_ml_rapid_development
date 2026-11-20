@@ -1,0 +1,25 @@
+# Centralized Non-Secret Configuration for Notebooks, FastAPI & Phoenix
+observability:
+  phoenix_ui_url: "http://127.0.0.1:6008"
+  phoenix_traces_endpoint: "http://127.0.0.1:6008/v1/traces"
+  project_name: "sre-incident-bootcamp"
+
+service:
+  api_base_url: "http://127.0.0.1:8000"
+  a2a_agent_url: "http://127.0.0.1:8000/a2a"
+  ops_webhook_base_url: "https://ops.internal/trigger"
+
+storage:
+  default_domain: "sre_finops"
+  qdrant_dir: "qdrant_local_db"
+
+models:
+  local_slm_path: "C:\\python\\ai_solutions\\aiml_rpd\\models\\qwen2.5-coder-1.5b"
+  local_embed_path: "C:\\python\\ai_solutions\\aiml_rpd\\models\\bge-small-en-v1.5"
+
+cloud:
+  enable_vertex_ai: false
+  enable_openai: false
+  gcp_location: "us-central1"
+  gcp_model: "gemini-2.5-flash"
+  openai_model: "gpt-4o-mini"

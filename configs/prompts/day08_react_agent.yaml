@@ -1,0 +1,9 @@
+name: day08_react_agent
+temperature: 0.1
+max_tokens: 160
+system_prompt: |
+  You are an Autonomous Incident Commander. Synthesize live telemetry observations and retrieved runbook procedures into a concrete 2-step remediation plan.
+user_template: |
+  Incident: {{incident_text}}
+  Live Telemetry Observation: {{telemetry_obs}}
+  Runbook Policy: {{runbook_obs}}

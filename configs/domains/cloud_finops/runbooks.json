@@ -1,0 +1,102 @@
+[
+  {
+    "id": 501,
+    "text": "RB FIN-101 [JVM / Cgroups]: Java container OOMKilled because -Xmx exceeded Kubernetes cgroup memory limit. Set -XX:MaxRAMPercentage=75.0 and align pod memory request=limit.",
+    "metadata": {
+      "runbook_id": "FIN-101",
+      "category": "k8s-cost",
+      "service": "jvm-workloads",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 502,
+    "text": "RB FIN-102 [CPU / Throttling]: Burstable GKE pod experiencing 65% CFS CPU throttling despite low average CPU. Increase CPU limit or remove CPU limit on latency-critical microservices.",
+    "metadata": {
+      "runbook_id": "FIN-102",
+      "category": "k8s-cost",
+      "service": "gke-compute",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 503,
+    "text": "RB FIN-103 [BigQuery / Slots]: Ad-hoc BI query scanned 18 TB unpartitioned table causing $112 spike. Enforce partition filter requirement and cap project slot reservations.",
+    "metadata": {
+      "runbook_id": "FIN-103",
+      "category": "data-warehouse",
+      "service": "bigquery-bi",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 504,
+    "text": "RB FIN-104 [Storage / Orphaned]: 48 unattached SSD Persistent Disks / EBS volumes accruing $1,900/mo waste. Snapshot volumes older than 14 days and delete unattached disks.",
+    "metadata": {
+      "runbook_id": "FIN-104",
+      "category": "storage",
+      "service": "block-storage",
+      "severity": "P3"
+    }
+  },
+  {
+    "id": 505,
+    "text": "RB FIN-105 [GPU / IdlePool]: A100/L4 GPU node pool at 2% utilization for 12 hours outside training schedule. Scale node pool to minNodes=0 and enable cluster autoscaler scale-down.",
+    "metadata": {
+      "runbook_id": "FIN-105",
+      "category": "gpu-compute",
+      "service": "ml-gpu-pool",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 506,
+    "text": "RB FIN-106 [Security / BillingKey]: Billing export webhook leaked service token and prompt injection payload. Revoke compromised token immediately, redact secrets, and audit IAM billing permissions.",
+    "metadata": {
+      "runbook_id": "FIN-106",
+      "category": "security",
+      "service": "finops-webhook",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 507,
+    "text": "RB FIN-107 [Network / CrossAZ]: Cross-AZ Kafka replication traffic spiked egress charges by $450/day. Enable rack-aware consumer fetching (client.rack) to prefer local-zone brokers.",
+    "metadata": {
+      "runbook_id": "FIN-107",
+      "category": "network-cost",
+      "service": "kafka-egress",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 508,
+    "text": "RB FIN-108 [Spot / Fallback]: Spot VM preemption rate exceeded 40% causing repeated batch job restarts. Diversify across 4 machine families and checkpoint intermediate state to GCS/S3.",
+    "metadata": {
+      "runbook_id": "FIN-108",
+      "category": "k8s-cost",
+      "service": "spot-batch",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 509,
+    "text": "RB FIN-109 [Observability / Logs]: Verbose DEBUG logging enabled in prod spiked Cloud Logging ingestion by 800 GB/day. Reset Spring Boot log level to INFO and apply log exclusion filter.",
+    "metadata": {
+      "runbook_id": "FIN-109",
+      "category": "observability-cost",
+      "service": "cloud-logging",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 510,
+    "text": "RB FIN-110 [Reservations / CUD]: Committed Use Discount (CUD) utilization dropped to 68% after service migration. Rebalance CUD commitments across active N2D/C3D instance families.",
+    "metadata": {
+      "runbook_id": "FIN-110",
+      "category": "commitments",
+      "service": "cud-optimizer",
+      "severity": "P3"
+    }
+  }
+]

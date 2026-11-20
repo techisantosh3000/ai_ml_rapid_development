@@ -1,0 +1,102 @@
+[
+  {
+    "id": 101,
+    "text": "RB-101 [GKE Pod OOMKilled Exit 137]: Check recent deployment rollout diff in namespace, capture JVM/Go heap dump, rollback canary if memory leak confirmed, or increase container memory limit by 1.5x.",
+    "metadata": {
+      "runbook_id": "RB-101",
+      "category": "compute",
+      "service": "checkout-api",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 102,
+    "text": "RB-102 [BigQuery Unpartitioned Scan Cost Spike]: Enforce maximum_bytes_billed query guardrail, partition fact tables by ingestion timestamp, and throttle svc-reporting slot reservation.",
+    "metadata": {
+      "runbook_id": "RB-102",
+      "category": "finops",
+      "service": "analytics-dw",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 103,
+    "text": "RB-103 [PostgreSQL / PgBouncer Connection Pool Exhaustion]: Inspect pg_stat_activity for idle-in-transaction locks, terminate blocking queries older than 60s, and scale PgBouncer max_client_conn.",
+    "metadata": {
+      "runbook_id": "RB-103",
+      "category": "database",
+      "service": "orders-db",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 104,
+    "text": "RB-104 [Kafka Consumer Group Rebalance Storm & Lag]: Increase max.poll.interval.ms to 600000, stabilize pod HPA scale-down cooldown, and verify partition assignment stickiness.",
+    "metadata": {
+      "runbook_id": "RB-104",
+      "category": "streaming",
+      "service": "order-events",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 105,
+    "text": "RB-105 [Cloud NAT Port Exhaustion & External 502/504]: Increase minimum ports per VM on Cloud NAT router, enable dynamic port allocation, and verify HTTP keep-alive connection pooling.",
+    "metadata": {
+      "runbook_id": "RB-105",
+      "category": "networking",
+      "service": "payment-gateway",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 106,
+    "text": "RB-106 [Webhook Secret Leak & Prompt Injection Defense]: Revoke exposed API/HF bearer token immediately, scrub PII/secrets via regex redaction filter, and quarantine untrusted payload.",
+    "metadata": {
+      "runbook_id": "RB-106",
+      "category": "security",
+      "service": "webhook-ingestor",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 107,
+    "text": "RB-107 [GKE Spot VM Preemption & Autoscaler Thrashing]: Apply PodDisruptionBudget minAvailable=2, migrate stateful workloads to on-demand node pool, and set node-pool anti-affinity.",
+    "metadata": {
+      "runbook_id": "RB-107",
+      "category": "compute",
+      "service": "search-indexer",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 108,
+    "text": "RB-108 [Redis Cache Stampede / Thundering Herd]: Enable probabilistic early expiration (PER), add jitter to TTL values, and activate singleflight request coalescing.",
+    "metadata": {
+      "runbook_id": "RB-108",
+      "category": "cache",
+      "service": "catalog-cache",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 109,
+    "text": "RB-109 [Istio mTLS / gRPC TLS Certificate Expiration]: Trigger cert-manager emergency certificate rotation, restart istio-ingressgateway pods, and verify SPIFFE trust bundle.",
+    "metadata": {
+      "runbook_id": "RB-109",
+      "category": "networking",
+      "service": "istio-ingress",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 110,
+    "text": "RB-110 [Orphaned Persistent Disks & Idle GPU Node FinOps Cleanup]: Take final snapshot of unattached disks older than 14 days, scale idle GPU node pool to zero, and notify FinOps owner.",
+    "metadata": {
+      "runbook_id": "RB-110",
+      "category": "finops",
+      "service": "ml-training-pool",
+      "severity": "P3"
+    }
+  }
+]

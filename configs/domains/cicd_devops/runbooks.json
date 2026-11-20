@@ -1,0 +1,102 @@
+[
+  {
+    "id": 201,
+    "text": "RB CI-101 [Build / Gradle]: Gradle dependency resolution timeout on NexusRM. Verify corporate proxy settings, clear corrupted ~/.gradle/caches/modules-2, and pin internal Nexus mirror URL.",
+    "metadata": {
+      "runbook_id": "CI-101",
+      "category": "build",
+      "service": "gradle-builder",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 202,
+    "text": "RB CI-102 [Registry / NexusRM]: Nexus Repository Manager 401/403 Unauthorized during artifact upload. Rotate expired CI service token in Harness Secrets Manager and verify deploy-role RBAC.",
+    "metadata": {
+      "runbook_id": "CI-102",
+      "category": "registry",
+      "service": "nexus-repo",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 203,
+    "text": "RB CI-103 [Security / AquaScan]: Aqua Scan pipeline gate blocked on CRITICAL CVE in base image. Upgrade base image to distroless-java21-nonroot, rebuild via Jib, and re-trigger vulnerability scan.",
+    "metadata": {
+      "runbook_id": "CI-103",
+      "category": "security",
+      "service": "aqua-scanner",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 204,
+    "text": "RB CI-104 [Quality / SonarQube]: SonarQube Quality Gate failed on new code coverage < 80% and cognitive complexity. Add JUnit 5 parameterized tests for uncovered branches and re-run analysis.",
+    "metadata": {
+      "runbook_id": "CI-104",
+      "category": "quality",
+      "service": "sonarqube",
+      "severity": "P3"
+    }
+  },
+  {
+    "id": 205,
+    "text": "RB CI-105 [Container / Jib]: Jib daemonless container build failed with registry blob upload EOF. Enable -Djib.httpTimeout=120000, verify GCR/ACR workload identity token, and retry.",
+    "metadata": {
+      "runbook_id": "CI-105",
+      "category": "container",
+      "service": "jib-packager",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 206,
+    "text": "RB CI-106 [SecretLeak / Pipeline]: Pipeline log exposed hardcoded registry token or SSH key. Immediately revoke compromised token, scrub build log history, and enforce pre-commit gitleaks hook.",
+    "metadata": {
+      "runbook_id": "CI-106",
+      "category": "security",
+      "service": "harness-runner",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 207,
+    "text": "RB CI-107 [Deploy / Harness]: Harness Kubernetes canary rollout stuck in ProgressDeadlineExceeded due to readinessProbe HTTP 503. Roll back release to previous verified artifact tag and inspect Spring Actuator health.",
+    "metadata": {
+      "runbook_id": "CI-107",
+      "category": "deploy",
+      "service": "harness-cd",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 208,
+    "text": "RB CI-108 [GitOps / Helm]: Helm chart template render error on nil pointer in values-prod.yaml. Validate chart locally with helm lint --strict and restore missing secretRef block.",
+    "metadata": {
+      "runbook_id": "CI-108",
+      "category": "deploy",
+      "service": "helm-deployer",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 209,
+    "text": "RB CI-109 [Runner / EphemeralPod]: Azure DevOps / Harness ephemeral build pod evicted for ephemeral-storage exhaustion. Prune Docker layer cache and mount 20Gi emptyDir scratch volume.",
+    "metadata": {
+      "runbook_id": "CI-109",
+      "category": "build",
+      "service": "k8s-build-agent",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 210,
+    "text": "RB CI-110 [Compliance / SBOM]: CycloneDX SBOM attestation signature verification failed during prod promotion. Re-sign container digest with Cosign KMS key and attach provenance.",
+    "metadata": {
+      "runbook_id": "CI-110",
+      "category": "security",
+      "service": "cosign-signer",
+      "severity": "P2"
+    }
+  }
+]

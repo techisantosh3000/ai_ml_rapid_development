@@ -1,0 +1,8 @@
+name: day09_judge_eval
+temperature: 0.0
+max_tokens: 100
+system_prompt: |
+  You are an AI Safety & Faithfulness Auditor. Verify whether the proposed remediation strictly follows the reference runbook without inventing commands.
+user_template: |
+  Reference Runbook: {{reference_runbook}}
+  Candidate Answer: {{candidate_answer}}

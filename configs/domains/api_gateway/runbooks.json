@@ -1,0 +1,102 @@
+[
+  {
+    "id": 601,
+    "text": "RB API-101 [RateLimit / HTTP429]: Downstream partner API burst triggering HTTP 429 Too Many Requests. Enable token-bucket rate limiter with jittered retry-after backoff and request coalescing.",
+    "metadata": {
+      "runbook_id": "API-101",
+      "category": "traffic",
+      "service": "envoy-gateway",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 602,
+    "text": "RB API-102 [Resilience / CircuitBreaker]: Resilience4j circuit breaker transitioned to OPEN on inventory-service (failure rate > 50%). Route to cached fallback catalog response and inspect upstream DB pool.",
+    "metadata": {
+      "runbook_id": "API-102",
+      "category": "resilience",
+      "service": "spring-gateway",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 603,
+    "text": "RB API-103 [Contract / Jackson]: Spring Boot Jackson MismatchedInputException after upstream v3 schema added unknown enum field. Enable FAIL_ON_UNKNOWN_PROPERTIES=false and deploy tolerant reader patch.",
+    "metadata": {
+      "runbook_id": "API-103",
+      "category": "contract",
+      "service": "order-bff",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 604,
+    "text": "RB API-104 [gRPC / Deadline]: gRPC DEADLINE_EXCEEDED across multi-hop microservice call chain. Propagate context deadline headers and tune HTTP/2 max concurrent streams.",
+    "metadata": {
+      "runbook_id": "API-104",
+      "category": "grpc",
+      "service": "grpc-mesh",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 605,
+    "text": "RB API-105 [mTLS / Istio]: Istio ingress gateway mTLS handshake failure due to expired SPIFFE workload certificate. Restart istiod / cert-manager agent to force SDS secret rotation.",
+    "metadata": {
+      "runbook_id": "API-105",
+      "category": "security",
+      "service": "istio-ingress",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 606,
+    "text": "RB API-106 [Security / JWTLeak]: API gateway access log captured unredacted Bearer token and prompt injection string. Strip Authorization headers in Envoy access log format and revoke token.",
+    "metadata": {
+      "runbook_id": "API-106",
+      "category": "security",
+      "service": "api-waf",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 607,
+    "text": "RB API-107 [CORS / Preflight]: Browser SPA failing with CORS Access-Control-Allow-Origin mismatch on OPTIONS preflight. Add production origin domain to gateway CORS policy.",
+    "metadata": {
+      "runbook_id": "API-107",
+      "category": "traffic",
+      "service": "envoy-gateway",
+      "severity": "P3"
+    }
+  },
+  {
+    "id": 608,
+    "text": "RB API-108 [GraphQL / Depth]: Deeply nested GraphQL query caused N+1 resolver CPU spike. Enforce max query depth = 7 and enable DataLoader batching.",
+    "metadata": {
+      "runbook_id": "API-108",
+      "category": "contract",
+      "service": "graphql-router",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 609,
+    "text": "RB API-109 [TLS / Cipher]: Legacy B2B client failing TLS 1.3 handshake on strict cipher suite. Enable TLS 1.2 ECDHE-RSA-AES256-GCM-SHA384 compatibility profile on dedicated partner listener.",
+    "metadata": {
+      "runbook_id": "API-109",
+      "category": "security",
+      "service": "edge-proxy",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 610,
+    "text": "RB API-110 [Caching / ETag]: CDN / API Gateway cache-hit ratio dropped to 8% due to Vary: Cookie header leak. Strip unnecessary session cookies on public GET /catalog routes.",
+    "metadata": {
+      "runbook_id": "API-110",
+      "category": "traffic",
+      "service": "cdn-edge",
+      "severity": "P3"
+    }
+  }
+]

@@ -1,0 +1,29 @@
+services:
+  bootcamp-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gcp-hybrid-aiml-lab
+    ports:
+      - "8888:8888"
+      - "8000:8000"
+    environment:
+      - HF_HOME=/cache/huggingface
+      - TOKENIZERS_PARALLELISM=false
+      - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT:-your-gcp-sandbox-id}
+      - GOOGLE_CLOUD_LOCATION=${GOOGLE_CLOUD_LOCATION:-us-central1}
+      - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
+    volumes:
+      - ./notebooks:/workspace/notebooks
+      - ./engine:/workspace/engine
+      - ./data:/workspace/data
+      - ${HOST_HF_CACHE:-./.cache/huggingface}:/cache/huggingface
+      - ${HOST_GCLOUD_CONFIG:-~/.config/gcloud}:/root/.config/gcloud:ro
+    command: >
+      jupyter lab
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --allow-root
+      --NotebookApp.token=''
+      --NotebookApp.password=''

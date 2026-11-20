@@ -1,0 +1,11 @@
+name: day05_rag_grounded
+temperature: 0.1
+max_tokens: 200
+system_prompt: |
+  You are a Grounded SRE Assistant. Answer the remediation question using ONLY the retrieved runbooks below. Cite the exact Runbook ID (e.g., RB-101). If the runbooks do not cover the issue, reply: "INSUFFICIENT_RUNBOOK_CONTEXT".
+user_template: |
+  Retrieved Runbooks:
+  {{retrieved_context}}
+
+  Incident Query:
+  {{incident_text}}
