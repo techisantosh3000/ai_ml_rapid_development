@@ -1,0 +1,38 @@
+{
+  "title": "Day 2 Knowledge Check: Dense Embeddings & Qdrant Filtering",
+  "questions": [
+    {
+      "question": "Why combine Qdrant metadata payload filters (e.g., category='database') with cosine vector search?",
+      "options": {
+        "A": "To deterministically exclude runbooks from unrelated subsystems before ranking similarity.",
+        "B": "Because cosine similarity cannot work on text longer than 10 words.",
+        "C": "To compress Hugging Face model weights on disk."
+      },
+      "answer": "A",
+      "explanation": "Metadata filters act as a deterministic guardrail so database alerts never match networking SOPs.",
+      "implication": "Without payload filtering, high-level words like 'timeout' or 'exhausted' cause cross-service false positives during P1 outages."
+    },
+    {
+      "question": "Why does UseCaseLoader assign a distinct Qdrant collection_name per domain?",
+      "options": {
+        "A": "To prevent cross-domain vector bleed when switching between SRE, CI/CD, and Payment Ops.",
+        "B": "Because Qdrant only allows 10 vectors per collection.",
+        "C": "To disable local disk persistence."
+      },
+      "answer": "A",
+      "explanation": "Isolating collections (e.g., sre_runbooks vs cicd_runbooks) keeps domain knowledge cleanly separated.",
+      "implication": "Multi-tenant or multi-domain knowledge bases require collection or tenant-ID isolation to guarantee data governance and retrieval precision."
+    },
+    {
+      "question": "Why normalize dense embedding vectors to unit length (L2 norm = 1)?",
+      "options": {
+        "A": "So dot-product computation equals exact cosine similarity.",
+        "B": "To convert float32 vectors into JSON strings.",
+        "C": "To bypass Pydantic validation."
+      },
+      "answer": "A",
+      "explanation": "For unit-normalized vectors, dot product and cosine similarity are mathematically identical.",
+      "implication": "Consistent L2 normalization prevents magnitude bias when comparing vectors across different document lengths."
+    }
+  ]
+}

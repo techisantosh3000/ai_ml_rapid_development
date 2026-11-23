@@ -1,0 +1,38 @@
+{
+  "title": "Day 9 Knowledge Check: Evals & Security Guardrails",
+  "questions": [
+    {
+      "question": "Why should PII/secret redaction run as a deterministic Python step BEFORE calling the LLM?",
+      "options": {
+        "A": "Deterministic regex guarantees secrets are stripped in <1ms before ever entering model context or external logs.",
+        "B": "Because LLMs cannot process brackets like [REDACTED].",
+        "C": "To increase GPU temperature."
+      },
+      "answer": "A",
+      "explanation": "Never rely on an LLM prompt alone to refrain from leaking secrets\u2014strip them deterministically upstream.",
+      "implication": "Prevents API keys, tokens, and customer PII from being memorized in traces or sent to external model endpoints."
+    },
+    {
+      "question": "What happens in Day 9 after an injection payload is neutralized?",
+      "options": {
+        "A": "The sanitized security alert still routes safely to Qdrant to retrieve the incident-response runbook (e.g., RB-106).",
+        "B": "The entire server crashes.",
+        "C": "The leaked token is printed to stdout."
+      },
+      "answer": "A",
+      "explanation": "Neutralizing the injection lets the triage pipeline safely recommend token revocation without obeying the attacker.",
+      "implication": "Security guardrails should degrade gracefully into safe incident-response workflows rather than dropping genuine security alerts."
+    },
+    {
+      "question": "Which incident index across all 6 domains tests secret redaction + prompt injection?",
+      "options": {
+        "A": "INCIDENTS[5] (e.g., INC-2026-006, CICD-2026-006, PAY-2026-006).",
+        "B": "INCIDENTS[0].",
+        "C": "INCIDENTS[9]."
+      },
+      "answer": "A",
+      "explanation": "Every domain dataset includes a standardized security stress test at index 5.",
+      "implication": "Standardized adversarial test fixtures ensure every new domain you onboard is automatically regression-tested for security."
+    }
+  ]
+}

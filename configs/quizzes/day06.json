@@ -1,0 +1,38 @@
+{
+  "title": "Day 6 Knowledge Check: Hybrid Reranking",
+  "questions": [
+    {
+      "question": "Why do pure dense bi-encoder embeddings sometimes struggle with exact error codes or service names like 'PgBouncer'?",
+      "options": {
+        "A": "Bi-encoders compress whole sentences into one pooled vector, smoothing over rare exact tokens.",
+        "B": "Bi-encoders only work on numbers.",
+        "C": "Qdrant discards metadata during search."
+      },
+      "answer": "A",
+      "explanation": "Pooling entire sentences averages token representations; hybrid lexical/cross-encoder reranking restores exact token precision.",
+      "implication": "Technical logs depend heavily on exact identifiers (Exit 137, CVE IDs, RC=91); hybrid scoring prevents semantic drift."
+    },
+    {
+      "question": "Why use a two-stage retrieve-then-rerank architecture instead of running a heavy reranker over all documents?",
+      "options": {
+        "A": "Stage 1 bi-encoder search scales fast over thousands of docs, while Stage 2 reranks only the Top-K candidates.",
+        "B": "Because rerankers cannot read JSON.",
+        "C": "To avoid using Python."
+      },
+      "answer": "A",
+      "explanation": "Two-stage retrieval balances sub-10ms recall at scale with high-precision top-K ranking.",
+      "implication": "Running pairwise reranking across 100k documents would violate P1 SLA latency budgets; two-stage retrieval keeps latency bounded."
+    },
+    {
+      "question": "What is the 'red herring' trap built into INCIDENTS[2] across all 6 domains?",
+      "options": {
+        "A": "A nominal CPU metric ('CPU at 22%..42%') paired with a specific subsystem bottleneck.",
+        "B": "An empty raw_log string.",
+        "C": "A missing expected_runbook field."
+      },
+      "answer": "A",
+      "explanation": "It tests whether your retriever focuses on the true subsystem failure rather than generic CPU keywords.",
+      "implication": "Real monitoring alerts frequently include healthy baseline metrics alongside the actual anomaly."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Day 8 Knowledge Check: Agentic Workflows, MCP, A2A & RLM",
+  "questions": [
+    {
+      "question": "How does the Recursive Language Model (RLM) paradigm prevent 'Context Rot' on massive log dumps?",
+      "options": {
+        "A": "It stores the long context as an external Python variable, slices it programmatically, and runs sub-SLM calls only on relevant chunks.",
+        "B": "It truncates and discards 95% of the log file randomly.",
+        "C": "It increases temperature to 1.8."
+      },
+      "answer": "A",
+      "explanation": "RLM treats long context as a programmatic environment rather than stuffing everything into one attention window.",
+      "implication": "Enables small 1.5B\u20137B models to inspect multi-megabyte stack traces accurately without needle-in-a-haystack degradation."
+    },
+    {
+      "question": "What is the architectural difference between MCP and the A2A v1.0 protocol?",
+      "options": {
+        "A": "MCP connects an agent vertically to tools/APIs; A2A v1.0 connects independent agents horizontally via Agent Cards without sharing internal memory.",
+        "B": "MCP is only for Java; A2A is only for CSS.",
+        "C": "They are identical names for SQLite."
+      },
+      "answer": "A",
+      "explanation": "MCP standardizes tool/data access, while A2A v1.0 standardizes cross-agent discovery and task delegation.",
+      "implication": "Using both protocols lets your SRE agent query internal MCP tools while collaborating safely with external FinOps or Security agents."
+    },
+    {
+      "question": "Why enforce deterministic bounds (like max_steps) on autonomous ReAct agents?",
+      "options": {
+        "A": "To prevent infinite tool-calling loops, runaway latency, and unexpected cloud API spend.",
+        "B": "Because Python loops cannot run more than twice.",
+        "C": "To disable Phoenix tracing."
+      },
+      "answer": "A",
+      "explanation": "Deterministic step budgets guarantee predictable worst-case latency and cost.",
+      "implication": "Unbounded while-True agent loops are a top cause of production outages and surprise token bills."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Day 7 Knowledge Check: PEFT / LoRA Fine-Tuning",
+  "questions": [
+    {
+      "question": "How does LoRA reduce GPU memory and training cost compared to full fine-tuning?",
+      "options": {
+        "A": "It freezes base model weights and trains two small low-rank matrices (A and B) whose product approximates weight updates.",
+        "B": "It deletes 98% of the transformer layers permanently.",
+        "C": "It converts the LLM into a regex script."
+      },
+      "answer": "A",
+      "explanation": "LoRA decomposes delta-W into A (d x r) and B (r x d), slashing trainable parameters by >98%.",
+      "implication": "Teams can fine-tune specialized domain adapters on modest single-GPU workstations instead of multi-node clusters."
+    },
+    {
+      "question": "When should you choose LoRA fine-tuning over Qdrant RAG?",
+      "options": {
+        "A": "When teaching the SLM a strict output style, domain jargon, or tool-calling format\u2014not for storing rapidly changing SOP facts.",
+        "B": "Whenever a runbook IP address changes.",
+        "C": "Instead of using security guardrails."
+      },
+      "answer": "A",
+      "explanation": "Use RAG for dynamic facts ('what to know') and LoRA for consistent formatting/behavior ('how to act').",
+      "implication": "Baking volatile facts into model weights causes stale hallucinations and forces expensive retraining cycles."
+    },
+    {
+      "question": "Why can a single base Qwen2.5-Coder model serve multiple domains with LoRA in production?",
+      "options": {
+        "A": "Lightweight adapter weights (~20MB) can be hot-swapped per tenant/domain on top of one shared base model in VRAM.",
+        "B": "Because LoRA adapters require zero disk space.",
+        "C": "Because LoRA disables tokenization."
+      },
+      "answer": "A",
+      "explanation": "Multi-LoRA serving shares one base model across many specialized domain adapters.",
+      "implication": "Dramatically reduces GPU VRAM footprint when supporting multiple enterprise teams."
+    }
+  ]
+}

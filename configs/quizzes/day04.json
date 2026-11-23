@@ -1,0 +1,38 @@
+{
+  "title": "Day 4 Knowledge Check: Structured JSON & Tool Execution",
+  "questions": [
+    {
+      "question": "Why validate SLM tool arguments with Pydantic before calling downstream APIs or webhooks?",
+      "options": {
+        "A": "To catch malformed JSON, missing keys, or invalid types deterministically before triggering side effects.",
+        "B": "To speed up cosine similarity math in Qdrant.",
+        "C": "To avoid installing FastAPI."
+      },
+      "answer": "A",
+      "explanation": "Pydantic acts as a deterministic type firewall between probabilistic LLM text and real operational APIs.",
+      "implication": "Unvalidated LLM strings passed directly to Kubernetes or billing APIs can trigger destructive automation on hallucinated parameters."
+    },
+    {
+      "question": "What is a major operational drawback of letting an agent chain many sequential tool/API calls?",
+      "options": {
+        "A": "Latency multiplies per round-trip, raw JSON responses bloat context tokens, and flaky APIs can cause retry loops.",
+        "B": "Tool calls reduce accuracy to 0%.",
+        "C": "Tool calls cannot be traced in OpenTelemetry."
+      },
+      "answer": "A",
+      "explanation": "Every tool call adds round-trip latency and tokens\u2014requiring max_steps bounds and span monitoring.",
+      "implication": "Production agents need strict step budgets, tool output truncation, and OpenTelemetry span timers per tool call."
+    },
+    {
+      "question": "How does ModelRouter handle response_schema when running locally vs. on Vertex AI?",
+      "options": {
+        "A": "It injects a JSON key template into the system prompt locally, and uses native response_schema on Vertex AI.",
+        "B": "It disables structured outputs locally.",
+        "C": "It converts JSON into XML."
+      },
+      "answer": "A",
+      "explanation": "This preserves a single unified interface across local SLMs and managed cloud APIs.",
+      "implication": "Application code stays completely decoupled from provider-specific structured-output SDK quirks."
+    }
+  ]
+}

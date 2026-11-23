@@ -1,0 +1,38 @@
+{
+  "title": "Day 1 Knowledge Check: Classical ML Baseline",
+  "questions": [
+    {
+      "question": "Why build a TF-IDF + LogisticRegression baseline on Day 1 before deploying an SLM?",
+      "options": {
+        "A": "To establish a deterministic latency/accuracy floor and verify whether simpler ML solves the task at zero token cost.",
+        "B": "Because Qdrant requires TF-IDF weights to initialize.",
+        "C": "Because Hugging Face models cannot classify P1/P2/P3 labels."
+      },
+      "answer": "A",
+      "explanation": "A classical ML floor runs in <5ms with zero GPU/token cost and proves where semantic LLMs add real value.",
+      "implication": "Skipping a classical baseline in production often leads to over-engineered, high-latency LLM pipelines for problems solvable with simple classifiers."
+    },
+    {
+      "question": "What is the primary limitation of TF-IDF bag-of-words on unseen production alerts?",
+      "options": {
+        "A": "It cannot run offline on Windows.",
+        "B": "It relies on exact lexical overlap and misses semantic synonyms (e.g., 'RAM exhausted' vs 'OOMKilled').",
+        "C": "It always takes more than 2 seconds per query."
+      },
+      "answer": "B",
+      "explanation": "TF-IDF tracks exact n-grams; semantic embeddings (Day 2) solve synonym matching.",
+      "implication": "When on-call services emit slightly different phrasing for the same failure mode, pure keyword models suffer silent false negatives."
+    },
+    {
+      "question": "Where are runtime URLs and the default domain configured in this repository?",
+      "options": {
+        "A": "Hardcoded inside Cell 4 of each notebook.",
+        "B": "Centralized in .env and configs/app_config.yaml via engine/settings.py.",
+        "C": "Inside qdrant_local_db/meta.json."
+      },
+      "answer": "B",
+      "explanation": "AppSettings in engine/settings.py externalizes all URLs, model paths, and domain profiles.",
+      "implication": "Externalizing configuration lets you promote identical code from local Windows laptops to GCP Cloud Run or AWS ECS with zero code edits."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "id": 901,
+    "text": "RB SCM-101 [Ingestion / supply_chain-svc-01]: Standard operating procedure #1 for supply_chain (ingestion). Verify service health metrics, apply configuration remediation patch #1, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-101",
+      "category": "ingestion",
+      "service": "supply_chain-svc-01",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 902,
+    "text": "RB SCM-102 [Processing / supply_chain-svc-02]: Standard operating procedure #2 for supply_chain (processing). Verify service health metrics, apply configuration remediation patch #2, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-102",
+      "category": "processing",
+      "service": "supply_chain-svc-02",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 903,
+    "text": "RB SCM-103 [Storage / supply_chain-svc-03]: Standard operating procedure #3 for supply_chain (storage). Verify service health metrics, apply configuration remediation patch #3, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-103",
+      "category": "storage",
+      "service": "supply_chain-svc-03",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 904,
+    "text": "RB SCM-104 [Networking / supply_chain-svc-04]: Standard operating procedure #4 for supply_chain (networking). Verify service health metrics, apply configuration remediation patch #4, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-104",
+      "category": "networking",
+      "service": "supply_chain-svc-04",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 905,
+    "text": "RB SCM-105 [Security / supply_chain-svc-05]: Standard operating procedure #5 for supply_chain (security). Verify service health metrics, apply configuration remediation patch #5, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-105",
+      "category": "security",
+      "service": "supply_chain-svc-05",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 906,
+    "text": "RB SCM-106 [Security / Guardrail]: Exposed API/HF token or prompt injection detected in supply_chain-svc-06. Revoke leaked credential immediately, redact secrets via regex filter, and quarantine payload.",
+    "metadata": {
+      "runbook_id": "SCM-106",
+      "category": "security",
+      "service": "supply_chain-svc-06",
+      "severity": "P1"
+    }
+  },
+  {
+    "id": 907,
+    "text": "RB SCM-107 [Processing / supply_chain-svc-07]: Standard operating procedure #7 for supply_chain (processing). Verify service health metrics, apply configuration remediation patch #7, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-107",
+      "category": "processing",
+      "service": "supply_chain-svc-07",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 908,
+    "text": "RB SCM-108 [Storage / supply_chain-svc-08]: Standard operating procedure #8 for supply_chain (storage). Verify service health metrics, apply configuration remediation patch #8, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-108",
+      "category": "storage",
+      "service": "supply_chain-svc-08",
+      "severity": "P2"
+    }
+  },
+  {
+    "id": 909,
+    "text": "RB SCM-109 [Networking / supply_chain-svc-09]: Standard operating procedure #9 for supply_chain (networking). Verify service health metrics, apply configuration remediation patch #9, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-109",
+      "category": "networking",
+      "service": "supply_chain-svc-09",
+      "severity": "P3"
+    }
+  },
+  {
+    "id": 910,
+    "text": "RB SCM-110 [Security / supply_chain-svc-10]: Standard operating procedure #10 for supply_chain (security). Verify service health metrics, apply configuration remediation patch #10, and confirm SLA recovery.",
+    "metadata": {
+      "runbook_id": "SCM-110",
+      "category": "security",
+      "service": "supply_chain-svc-10",
+      "severity": "P3"
+    }
+  }
+]

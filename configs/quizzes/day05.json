@@ -1,0 +1,38 @@
+{
+  "title": "Day 5 Knowledge Check: End-to-End Grounded RAG",
+  "questions": [
+    {
+      "question": "Why is RAG preferred over parametric model memory for production SRE runbooks?",
+      "options": {
+        "A": "Runbooks change frequently; updating Qdrant JSON takes milliseconds without retraining weights, and citations prevent hallucinations.",
+        "B": "Because LLMs cannot read English text without Qdrant.",
+        "C": "Because RAG increases inference temperature to 2.0."
+      },
+      "answer": "A",
+      "explanation": "RAG keeps dynamic operational knowledge externalized, auditable, and instantly updatable.",
+      "implication": "When an on-call engineer updates a rollback command, the next triage call immediately uses the new SOP."
+    },
+    {
+      "question": "What happens if top_k is set too high (e.g., top_k=20) on a 1.5B SLM?",
+      "options": {
+        "A": "Irrelevant runbooks dilute attention ('Lost in the Middle'), increasing latency and confusion.",
+        "B": "The model automatically becomes 70B parameters.",
+        "C": "Qdrant deletes old vectors."
+      },
+      "answer": "A",
+      "explanation": "Small context windows perform best with focused, high-precision Top-2 or Top-3 chunks.",
+      "implication": "Over-stuffing context degrades answer faithfulness and slows down CPU/GPU prefill latency."
+    },
+    {
+      "question": "Which OpenTelemetry span kinds distinguish retrieval from generation in Arize Phoenix?",
+      "options": {
+        "A": "RETRIEVER for Qdrant search and LLM for model generation.",
+        "B": "CSS and HTML.",
+        "C": "TCP and UDP."
+      },
+      "answer": "A",
+      "explanation": "OpenInference span kinds let you pinpoint whether an error came from bad retrieval or bad generation.",
+      "implication": "Separating retrieval metrics from generation metrics prevents wasting time tuning prompts when the real bug was a missing vector."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Day 3 Knowledge Check: Externalized Prompts & Local SLM Inference",
+  "questions": [
+    {
+      "question": "Why store prompts in external YAML files (configs/prompts/*.yaml) instead of Python f-strings?",
+      "options": {
+        "A": "To enable versioned prompt updates, hot-reloading, and clean separation between code and prompt tuning.",
+        "B": "Because Python strings cannot hold more than 256 characters.",
+        "C": "Because YAML automatically fine-tunes Qwen weights."
+      },
+      "answer": "A",
+      "explanation": "Externalized YAML prompts let teams iterate on instructions and hyperparameters without redeploying Python logic.",
+      "implication": "Prompt changes can be reviewed in Git PRs, rolled back independently, and hot-reloaded without container rebuilds."
+    },
+    {
+      "question": "How should you structure prompts to maximize KV / Prompt Caching savings on OpenAI, Gemini, or local vLLM?",
+      "options": {
+        "A": "Put the dynamic raw_log at the very top and system instructions at the bottom.",
+        "B": "Place static system instructions and shared runbooks first, and dynamic incident logs at the end.",
+        "C": "Randomize the system prompt on every request."
+      },
+      "answer": "B",
+      "explanation": "Prefix KV caching reuses attention tensors only for identical leading token prefixes.",
+      "implication": "Putting dynamic timestamps or log lines at token 0 invalidates prefix caching on every call, inflating latency and cloud token bills by 50\u201380%."
+    },
+    {
+      "question": "What is the main advantage of running a 1.5B Small Language Model (SLM) locally during workshops and edge triage?",
+      "options": {
+        "A": "Zero marginal token cost, full offline determinism, and zero data egress.",
+        "B": "It has more parameters than frontier cloud models.",
+        "C": "It requires no RAM or CPU."
+      },
+      "answer": "A",
+      "explanation": "Local SLMs eliminate API rate limits, network flakiness, and PII egress risks.",
+      "implication": "Sensitive production logs containing internal hostnames or customer IDs never leave your VPC or workstation."
+    }
+  ]
+}

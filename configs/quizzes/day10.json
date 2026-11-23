@@ -1,0 +1,38 @@
+{
+  "title": "Day 10 Knowledge Check: Production Deployment & Orchestration",
+  "questions": [
+    {
+      "question": "Why does app/main.py initialize Qdrant and ModelRouter inside FastAPI's lifespan context manager?",
+      "options": {
+        "A": "To load model weights and index runbooks once at startup rather than reloading on every HTTP request.",
+        "B": "To disable Swagger docs at /docs.",
+        "C": "Because FastAPI forbids global dictionaries."
+      },
+      "answer": "A",
+      "explanation": "Startup lifespan initialization keeps per-request latency in milliseconds.",
+      "implication": "Loading a 1.5B transformer inside a request handler would cause 5\u201310 second timeouts under concurrent traffic."
+    },
+    {
+      "question": "How does a workflow orchestrator like Slingshot integrate with this microservice?",
+      "options": {
+        "A": "It listens to PagerDuty/Slack alerts, calls POST /v1/triage, pauses P1 actions for Human-in-the-Loop approval, and logs outcomes.",
+        "B": "It replaces Python with Excel macros.",
+        "C": "It requires disabling .gitignore."
+      },
+      "answer": "A",
+      "explanation": "Stateless REST + A2A contracts let enterprise workflow engines orchestrate approvals and downstream actions cleanly.",
+      "implication": "Separating AI reasoning (FastAPI microservice) from workflow state & human approvals keeps both layers clean and auditable."
+    },
+    {
+      "question": "How do you transition this local stack to GCP Cloud Run or AWS ECS without rewriting application logic?",
+      "options": {
+        "A": "Package the repo in a container and toggle environment variables (ENABLE_VERTEX_AI or ENABLE_OPENAI) in .env / cloud secrets.",
+        "B": "Manually rewrite all 10 notebooks in C++.",
+        "C": "Commit the 3GB models/ folder to GitHub."
+      },
+      "answer": "A",
+      "explanation": "Externalized settings and ModelRouter provide seamless local-to-cloud parity.",
+      "implication": "Clean environment abstraction eliminates vendor lock-in and cuts cloud migration effort from weeks to minutes."
+    }
+  ]
+}
